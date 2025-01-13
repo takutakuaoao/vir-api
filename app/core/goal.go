@@ -2,10 +2,16 @@ package core
 
 import "errors"
 
-func NewGoal(title string) (string, error) {
+func NewGoal(title string, endDate string) (Goal, error) {
 	if title == "" {
-		return "", errors.New("title is required")
+		return Goal{}, errors.New("title is required")
 	}
 
-	return "", nil
+	return Goal{
+		EndDate: endDate,
+	}, nil
+}
+
+type Goal struct {
+	EndDate string
 }
