@@ -15,3 +15,7 @@ func NewGoal(title string, endDate string) (Goal, error) {
 type Goal struct {
 	EndDate string
 }
+
+func (g Goal) SameEndDate(endDate string) bool {
+	return g.EndDate == endDate
+}
