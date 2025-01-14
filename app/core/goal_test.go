@@ -1,13 +1,14 @@
-package core
+package core_test
 
 import (
 	"github.com/stretchr/testify/assert"
+	"github.com/takutakuaoao/vir-api/core"
 	"testing"
 )
 
 func Test_目標にタイトルが設定されていない場合にエラー(t *testing.T) {
 	emptyTitle := ""
-	_, err := NewGoal(emptyTitle, "")
+	_, err := core.NewGoal(emptyTitle, "")
 
 	assert.Error(t, err)
 }
@@ -16,7 +17,7 @@ func Test_目標の日付を登録できる(t *testing.T) {
 	endDate := "2025-01-01"
 	title := "Test Title"
 
-	goal, _ := NewGoal(title, endDate)
+	goal, _ := core.NewGoal(title, endDate)
 
 	assert.True(t, goal.SameEndDate("2025-01-01"))
 }
@@ -24,7 +25,7 @@ func Test_目標の日付を登録できる(t *testing.T) {
 func Test_目標の日付を確認できる(t *testing.T) {
 	endDate := "2025-01-01"
 
-	goal, _ := NewGoal("Test Title", endDate)
+	goal, _ := core.NewGoal("Test Title", endDate)
 
 	assert.Equal(t, true, goal.SameEndDate("2025-01-01"))
 }
@@ -66,7 +67,7 @@ func Test_目標の日付の形式が正しくない場合にエラー(t *testin
 
 	for _, tt := range cases {
 		t.Run(tt.name, func(t *testing.T) {
-			_, err := NewGoal("Title", tt.invalidDateFormat)
+			_, err := core.NewGoal("Title", tt.invalidDateFormat)
 
 			assert.Error(t, err)
 		})
