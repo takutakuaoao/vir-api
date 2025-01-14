@@ -18,7 +18,7 @@ func Test_目標の日付を登録できる(t *testing.T) {
 
 	goal, _ := NewGoal(title, endDate)
 
-	assert.Equal(t, goal.EndDate, "2025-01-01")
+	assert.True(t, goal.SameEndDate("2025-01-01"))
 }
 
 func Test_目標の日付を確認できる(t *testing.T) {

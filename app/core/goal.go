@@ -8,14 +8,14 @@ func NewGoal(title string, endDate string) (Goal, error) {
 	}
 
 	return Goal{
-		EndDate: endDate,
+		endDate: endDate,
 	}, nil
 }
 
 type Goal struct {
-	EndDate string
+	endDate string
 }
 
 func (g Goal) SameEndDate(endDate string) bool {
-	return g.EndDate == endDate
+	return g.endDate == endDate
 }
