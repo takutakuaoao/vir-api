@@ -10,7 +10,7 @@ func Test_目標にタイトルが設定されていない場合にエラー(t *
 	emptyTitle := ""
 	_, err := core.NewGoal(emptyTitle, "")
 
-	assert.Error(t, err)
+	assert.Errorf(t, err, core.ErrorTitleRequired)
 }
 
 func Test_目標の日付を登録できる(t *testing.T) {
@@ -69,7 +69,7 @@ func Test_目標の日付の形式が正しくない場合にエラー(t *testin
 		t.Run(tt.name, func(t *testing.T) {
 			_, err := core.NewGoal("Title", tt.invalidDateFormat)
 
-			assert.Error(t, err)
+			assert.Errorf(t, err, core.ErrorInvalidEndDate)
 		})
 	}
 }
