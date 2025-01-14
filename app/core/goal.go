@@ -12,14 +12,14 @@ const (
 
 func NewGoal(title string, endDate string) (Goal, error) {
 	if title == "" {
-		return Goal{}, errors.New(ErrorTitleRequired)
+		return failNewGoal(errors.New(ErrorTitleRequired))
 	}
 
 	YMDGolangDateFormat := "2006-01-02"
 	_, err := time.Parse(YMDGolangDateFormat, endDate)
 
 	if err != nil {
-		return Goal{}, errors.New(ErrorInvalidEndDate)
+		return failNewGoal(errors.New(ErrorInvalidEndDate))
 	}
 
 	return Goal{
@@ -33,4 +33,8 @@ type Goal struct {
 
 func (g Goal) SameEndDate(endDate string) bool {
 	return g.endDate == endDate
+}
+
+func failNewGoal(err error) (Goal, error) {
+	return Goal{}, err
 }
