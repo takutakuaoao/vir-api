@@ -15,11 +15,13 @@ func NewGoal(title string, endDate string) (Goal, error) {
 		return failNewGoal(errors.New(ErrorTitleRequired))
 	}
 
-	YMDGolangDateFormat := "2006-01-02"
-	_, err := time.Parse(YMDGolangDateFormat, endDate)
+	if endDate != "" {
+		YMDGolangDateFormat := "2006-01-02"
+		_, err := time.Parse(YMDGolangDateFormat, endDate)
 
-	if err != nil {
-		return failNewGoal(errors.New(ErrorInvalidEndDate))
+		if err != nil {
+			return failNewGoal(errors.New(ErrorInvalidEndDate))
+		}
 	}
 
 	return Goal{

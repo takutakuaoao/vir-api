@@ -30,6 +30,14 @@ func Test_目標の日付を確認できる(t *testing.T) {
 	assert.Equal(t, true, goal.SameEndDate("2025-01-01"))
 }
 
+func Test_目標の日付は空でもOK(t *testing.T) {
+	emptyEndDate := ""
+
+	_, err := core.NewGoal("Test Title", emptyEndDate)
+
+	assert.Nil(t, err)
+}
+
 func Test_目標の日付の形式が正しくない場合にエラー(t *testing.T) {
 	cases := []struct {
 		name              string
