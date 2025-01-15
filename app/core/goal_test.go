@@ -6,6 +6,13 @@ import (
 	"testing"
 )
 
+func Test_目標にタイトルを設定する(t *testing.T) {
+	title := "Title Test"
+	goal, _ := core.NewGoal(title, "")
+
+	assert.Equal(t, title, goal.Title)
+}
+
 func Test_目標にタイトルが設定されていない場合にエラー(t *testing.T) {
 	emptyTitle := ""
 	_, err := core.NewGoal(emptyTitle, "")

@@ -20,6 +20,7 @@ func NewGoal(title string, endDate string) (Goal, error) {
 	}
 
 	return Goal{
+		Title:   title,
 		endDate: endDate,
 	}, nil
 }
@@ -36,6 +37,7 @@ func validateDateFormat(date string) error {
 }
 
 type Goal struct {
+	Title   string
 	endDate string
 }
 
