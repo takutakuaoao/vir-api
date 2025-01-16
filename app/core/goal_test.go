@@ -9,8 +9,9 @@ import (
 func Test_目標にタイトルを設定する(t *testing.T) {
 	title := "Title Test"
 	goal, _ := core.NewGoal(title, "")
+	expect, _ := core.NewGoal(title, "")
 
-	assert.Equal(t, title, goal.Title)
+	assert.True(t, goal.Equal(expect))
 }
 
 func Test_目標にタイトルが設定されていない場合にエラー(t *testing.T) {
@@ -25,16 +26,9 @@ func Test_目標の日付を登録できる(t *testing.T) {
 	title := "Test Title"
 
 	goal, _ := core.NewGoal(title, endDate)
+	expect, _ := core.NewGoal(title, endDate)
 
-	assert.True(t, goal.SameEndDate("2025-01-01"))
-}
-
-func Test_目標の日付を確認できる(t *testing.T) {
-	endDate := "2025-01-01"
-
-	goal, _ := core.NewGoal("Test Title", endDate)
-
-	assert.Equal(t, true, goal.SameEndDate("2025-01-01"))
+	assert.True(t, goal.Equal(expect))
 }
 
 func Test_目標の日付は空でもOK(t *testing.T) {

@@ -20,7 +20,7 @@ func NewGoal(title string, endDate string) (Goal, error) {
 	}
 
 	return Goal{
-		Title:   title,
+		title:   title,
 		endDate: endDate,
 	}, nil
 }
@@ -37,16 +37,12 @@ func validateDateFormat(date string) error {
 }
 
 type Goal struct {
-	Title   string
+	title   string
 	endDate string
 }
 
-func (g Goal) SameEndDate(endDate string) bool {
-	return g.endDate == endDate
-}
-
 func (g Goal) Equal(other Goal) bool {
-	return g.Title == other.Title && g.endDate == other.endDate
+	return g.title == other.title && g.endDate == other.endDate
 }
 
 func failNewGoal(err error) (Goal, error) {
