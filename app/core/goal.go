@@ -45,6 +45,10 @@ func (g Goal) SameEndDate(endDate string) bool {
 	return g.endDate == endDate
 }
 
+func (g Goal) Equal(other Goal) bool {
+	return g.Title == other.Title && g.endDate == other.endDate
+}
+
 func failNewGoal(err error) (Goal, error) {
 	return Goal{}, err
 }

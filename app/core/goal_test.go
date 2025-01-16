@@ -88,3 +88,39 @@ func Test_目標の日付の形式が正しくない場合にエラー(t *testin
 		})
 	}
 }
+
+func Test_equal(t *testing.T) {
+	type goalParam struct {
+		title   string
+		endDate string
+	}
+
+	cases := []struct {
+		name   string
+		self   goalParam
+		other  goalParam
+		expect bool
+	}{
+		{
+			name:   "equal",
+			self:   goalParam{title: "Title", endDate: "2025-01-01"},
+			other:  goalParam{title: "Title", endDate: "2025-01-01"},
+			expect: true,
+		},
+		{
+			name:   "not equal",
+			self:   goalParam{title: "Title", endDate: "2025-01-01"},
+			other:  goalParam{title: "Title2", endDate: "2025-01-02"},
+			expect: false,
+		},
+	}
+
+	for _, tt := range cases {
+		t.Run(tt.name, func(t *testing.T) {
+			self, _ := core.NewGoal(tt.self.title, tt.self.endDate)
+			other, _ := core.NewGoal(tt.other.title, tt.other.endDate)
+
+			assert.Equal(t, tt.expect, self.Equal(other))
+		})
+	}
+}
