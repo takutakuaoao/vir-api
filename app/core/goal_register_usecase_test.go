@@ -7,22 +7,29 @@ import (
 )
 
 func Test_目標を登録する(t *testing.T) {
-	db := newArrayRepository()
+	db := newMockGoalRepository()
 	usecase := core.NewGoalRegisterUsecase(&db)
 	usecase.Execute("Title", "2025-01-01")
 
-	assert.Equal(t, "Title", db.get(0).title)
-	assert.Equal(t, "2025-01-01", db.get(0).endDate)
+	assert.True(t, db.calledRegister(1, "Title", "2025-01-01"), true)
 }
 
-func newArrayRepository() *arrayRepository {
-	return &arrayRepository{}
+func newMockGoalRepository() *mockGoalRepository {
+	return &mockGoalRepository{}
 }
 
-type arrayRepository struct {
+type mockGoalRepository struct {
+	calledRegisterArgs []struct {
+		title   string
+		endDate string
+	}
 }
 
-func (a *arrayRepository) get(index int) inMemoryGoal {
+func (a *mockGoalRepository) calledRegister(count int, title string, endDate string) bool {
+	return false
+}
+
+func (a *mockGoalRepository) get(index int) inMemoryGoal {
 	return inMemoryGoal{}
 }
 
